@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table.html</title>
+</head>
+
+<body>
+    <a href="#hong">홍길동의 자기소개</a> <br>
+    <a href="#frequent">자주가는 사이트</a>
+    <h3>학생 점수</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>title 부분</td>
+                <th>이름</th>
+                <th>영어</th>
+                <th>수학</th>
+                <th>합계</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td rowspan="2">data 부분</td>
+                <td>홍길동</td>
+                <td>80</td>
+                <td>70</td>
+                <td>150</td>
+            </tr>
+            <tr>
+                <td>김민수</td>
+                <td>85</td>
+                <td>77</td>
+                <td>162</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>footer부분</td>
+                <td colspan="4">3학년 9반 점수 리스트</td>
+            </tr>
+        </tfoot>
+    </table>
+    <br>
+
+    <figure>
+
+        <table border="1" id="hong">
+            <caption>홍길동의 자기소개</caption>
+            <thead>
+                <td>이름</td>
+                <td>홍길동</td>
+                <td>연락처</td>
+                <td>010-1234-5678</td>
+                <td>사진</td>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>주소</td>
+                    <td colspan="3">대구 중구 중앙대로길 100</td>
+                    <td rowspan="2"> <a href="../profile/hong.html"><img src="../img/hong.png" alt="홍길동의 이미지"
+                                width="90px"></a></td>
+                </tr>
+
+                <tr>
+                    <td>자기소개</td>
+                    <td colspan="3">프로그램을 공부하는 학생.</td>
+                </tr>
+            </tbody>
+        </table>
+        <figcaption style="padding-left: 10%;">
+            홍길동의 자기소개입니다.
+        </figcaption>
+        <a href="#" class="top">Top</a>
+    </figure>
+
+    <table border="1" id="frequent">
+        <caption>자주 가는 사이트</caption>
+        <tr>
+            <td>사이트명</td>
+            <td>URL</td>
+            <td>설명</td>
+            <th>로고</th>
+        </tr>
+
+        <tr>
+            <td>다음</td>
+            <td><a target="_blank" href="https://www.daum.net">www.daum.net</a></td>
+            <td>다음 페이지입니다</td>
+            <td> <a target="_blank" href="https://www.daum.net"><img src="../img/daum.png" alt="daum로고"
+                        width="90px"></a></td>
+        </tr>
+        <tr>
+            <td>구글</td>
+            <td><a target="_blank" href="https://www.google.com">www.google.com</a></td>
+            <td>구글 페이지입니다</td>
+            <td><a target="_blank" href="https://google.com"><img src="../img/google.png" alt="google로고" width="90px">
+                </a></td>
+        </tr>
+        <tr>
+            <td>네이버</td>
+            <td><a target="_blank" href="https://www.naver.com">www.never.com</a></td>
+            <td>네이버 페이지입니다.</td>
+            <td><a target="_blank" href="https://naver.com"><img src="../img/naver.png" alt="naver로고" width="90"></a>
+            </td>
+        </tr>
+    </table>
+    <a href="#" class="top">Top</a> <br>
+
+    <a href="../AddBankMemberServlet?id=user1&pw=1234&name=김사용&role=0"> bank멤버 추가하기</a>
+    <br>
+    <a href="https://developer.mozilla.org/ko/docs/Web/HTML#key_resources" target="_blank">mdn사이트의 중요한 자료</a>
+    <br>
+    <a href="https://developer.mozilla.org/ko/docs/Web/HTML#beginners_tutorials" target="_blank">mdn사이트의 초보자 학습서</a>
+    <br>
+    <img src="../img/hong.png" alt="" usemap="#favorites">
+    <map name="favorites">
+        <area shape="rect" coords="50,50,100,100" target="_blank" href="https://www.daum.net" alt="">
+        <area shape="rect" coords="150,150,200,200" target="_blank" href="https://www.google.net" alt="">
+        <area shape="rect" coords="250,250,350,350" target="_blank" href="https://www.naver.net" alt="">
+    </map>
+
+    <img src="../img/black.png" alt="" usemap="sites">
+    <map name="sites">
+        <area shape="rect" coords="0,0,100,100" target="_blank" href="https://www.naver.com" alt="">
+        <area shape="rect" coords="0,130,100,100" target="_blank" href="https://www.google.com" alt="">
+        <area shape="rect" coords="150,150,290,290" target="_blank" href="https://www.daum.net" alt="">
+    </map>
+    
+    <p>Lorem</p>
+    ipsum dolor <br>
+    sit amet <br>
+    consectetur <br>
+    adipisicing elit. <br>
+    Laudantium modi, <br>
+    consequatur eius <br>
+    odio ut dicta <br>
+    optio error <br>
+    et itaque <br>
+    cumque voluptate <br>
+    eligendi officiis <br>
+    mollitia enim <br>
+    inventore accusamus <br>
+    facilis obcaecati vitae!
+
+</body>
+
+</html>

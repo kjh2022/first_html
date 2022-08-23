@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/selector.html</title>
+    <style>
+        *{
+            /* 전체 선택자 */
+            color: coral;
+        }
+        p{
+            color: blue;
+        }
+        p#p1{
+            font-size: large;
+        }
+        p#p2{
+            background-color: seagreen;
+        }
+        div.container{
+            border: 1px solid gold;
+        }
+        ul.container{
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Heading</h1>
+    <div class="container">
+        <p id="p1">paragraph1</p>
+        <p id="p2">paragraph2</p>
+    </div>
+    <p>paragraph3</p>
+    <ul class="container">
+        <li>Apple</li>
+        <li>Banana</li>
+    </ul>
+</body>
+</html>
