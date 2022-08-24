@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/struct_selector2.html</title>
+    <style>
+        /* 구조적 가상 선택자 */    
+        p:nth-of-type(1){
+            color: red;
+        }
+        div>p:nth-of-type(2n){
+            color: red;
+        }
+        div>p:nth-last-of-type(2n){
+            color: skyblue;
+        }
+        div>p:first-of-type{
+            background-color: azure;
+        }
+        div>p:last-of-type{
+            background-color: bisque;
+        }
+        /* input[type='text'], input[type='email']{ */
+            /* background-color: aliceblue; */
+        /* } */
+        input:not([type='password']){
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3>Espresso</h3>
+    <p>Americano</p>
+    <p>Caffe Latte</p>
+    <p>Caramel Latte</p>
+    <h4>Caffe Mocah</h4>
+    <p>Cappucino</p>
+
+    <div>
+        <h3>Espresso</h3>
+        <p>Americano</p>
+        <p>Caffe Latte</p>
+        <p>Caramel Latte</p>
+        <h4>Caffe Mocah</h4>
+        <p>Cappucino</p>    
+    </div>
+    <input type="text" value="Text"><br>
+    <input type="email" value="email"> <br>
+    <input type="password" value="1234">
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<title>원형 그라데이션</title>
+	<style>
+		.grad1{
+			width: 80%;
+			height: 500px;
+			background: red;
+			background: -webkit-linear-gradient(white, yellow, red);/*초기 모던 브라우저*/
+			background: -moz-linear-gradient(white, yellow, red);/*초기 모던 브라우저*/
+			background: -o-linear-gradient(white, yellow, red);/*초기 모던 브라우저*/
+			background: radial-gradient(white, yellow, red);/*최신 모던 브라우저*/
+		}
+		.grad2{
+			width: 80%;
+			height: 500px;
+			background: red;
+			background: -webkit-linear-gradient(white, yellow, red);/*초기 모던 브라우저*/
+			background: -moz-linear-gradient(white, yellow, red);/*초기 모던 브라우저*/
+			background: -o-linear-gradient(white, yellow, red);/*초기 모던 브라우저*/
+			background: radial-gradient(circle white, yellow, red);/*최신 모던 브라우저*/
+		}
+	</style>
+</head>
+
+<body>
+	<div class="grad1"></div>
+	<div class="grad2"></div>
+</body>
+
+</html>

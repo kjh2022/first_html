@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css/08/boxmodel.html</title>
+    <style>
+        div.box1{
+            display: inline-block;
+            width: 300px;
+            border-width: 10px;
+            border-color: red;
+            border-style: solid;
+            /* border: 2px red solid; 위의 3줄이 이 1줄과 같은 의미*/
+            padding-top: 20px;
+            padding-right: 15px;
+            padding-left: 10px;
+            padding-bottom: 15px;
+            /* padding: 20px 15px 15px 10px; 상 우 좌 하 순으로 표현가능 */
+            margin: 30px 25px;/*상, 하에는 30px, 좌, 우에는  25px을 지정하겠다는 뜻*/
+        }
+        div.box2{
+            display: inline-block;
+            width: 300px;
+            border: 5px solid red;
+            padding: 10px;
+            margin: 15px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil placeat, quas obcaecati quaerat nesciunt amet
+        autem eveniet maiores rerum expedita! Voluptates accusantium itaque incidunt corporis possimus nobis molestiae
+        laudantium perspiciatis.
+    </div>
+    <br>
+    <div class="box2">
+        Lorem
+    </div>
+</body>
+
+</html>
