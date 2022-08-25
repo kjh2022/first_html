@@ -1,0 +1,111 @@
+ /*접종 실적 총괄 테이블*/
+.clr1 {
+    display: inline-block;
+    margin: 2px 4px;
+    vertical-align: middle;
+    width: auto;
+    min-width: 22px;
+    height: auto;
+    min-height: 22px;
+    font-size: 13px;
+    line-height: 21px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    border-radius: 100%;
+    background-color: #0056af;
+
+}
+
+.clr2 {
+    display: inline-block;
+    margin: 2px 4px;
+    vertical-align: middle;
+    width: auto;
+    min-width: 22px;
+    height: auto;
+    min-height: 22px;
+    font-size: 13px;
+    line-height: 21px;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    border-radius: 100%;
+    background-color: #dc4c14;
+}
+
+#fi {
+    margin-bottom: 0.5%;
+}
+
+.table1 {
+    border-top: 2px solid gray;
+    /* border: 1px solid gray; */
+    border-collapse: collapse;
+    width: auto;
+}
+
+.table1 th {
+    border: 1px solid gray;
+    width: 180px;
+    height: 30px;
+    background-color: rgb(243, 242, 242);
+}
+
+.table1 td {
+    border: 1px solid gray;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: 600;
+}
+
+/*시도별 접종 현황*/
+#se {
+    margin-bottom: 0.5%;
+}
+
+.table2 {
+    border-top: 2px solid gray;
+    border-collapse: collapse;
+    width: auto;
+}
+
+.table2 th {
+    border: 1px solid gray;
+    width: 100px;
+    height: 30px;
+}
+
+.table2 td {
+    border: 1px solid gray;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: 600;
+}
+
+th:not([class="sum"]) {
+    background-color: #f8f8f8;
+}
+
+.sum {
+    background-color: #f7faff;
+    border-bottom: 1.1px dotted #6d88b7;
+    color: #405985;
+}
+p.hdn{
+    display: block;
+    content: "*";
+    font-family: "Dotum";
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: 600;
+    color: #dd0000;
+    position: absolute;
+    left: 2px;
+    top: 7px;
+    width: 14px;
+    height: 14px;
+    background-color: #ffcece;
+    border-radius: 100%;
+    text-align: center;
+}
