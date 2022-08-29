@@ -5,9 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>javascript/default.html</title>
-    <script src="./js/7loop.js"></script>
+    <style>
+        
+    </style>
 </head>
 <body>
-   
+    <input type="number" name="num1" id="num1" value=""> + <br>
+    <input type="number" name="num2" id="num2" value=""> = <br>
+    <input type="number" name="num1" id="result"><br> 
+    <button onclick="calc()">계산</button>
+    <!-- 나이<br>
+    <input type="number" name="num1" id="num1" value="30"> <br>
+    <input type="number" name="num2" id="num2" value="50"><br> -->
+    <script>
+        // let val = document.querySelector('input[type = "number"]').value;
+        // let val2 = document.querySelector('#num2').value;
+        // console.log(typeof val, val);
+        // console.log(parseInt(val) + parseInt(val2)); //parseInt = 문자열 타입의 숫자를 int타입으로 변환시켜 줌 -->
+        function calc(){
+            //num1, num2의 합의 결과 result를 계산하는 함수 작성
+            let num1 = document.querySelector('#num1').value;
+            let num2 = document.querySelector('#num2').value;
+            let result = parseInt(num1) + parseInt(num2);
+            document.querySelector('#result').value = result;
+
+            //비워주기
+            document.querySelector('#num1').value = '';
+            document.querySelector('#num2').value ='';
+            document.querySelector('#num1').focus();
+        }
+        </script>
+
+        <script src="./js0829/for_test2.js"></script>
 </body>
 </html>
