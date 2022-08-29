@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="복습페이지.css">
+</head>
+
+<body>
+    <div id="container">
+        <!-- 헤더 및 리스트 -->
+        <h2 class="forH">header 영역</h2>
+        <h3 class="forH">내 페이지에 도달한 것을 환영하는 바임</h3>
+
+        <nav class="navi">
+            <ul>
+                <li><a href="#">첫번째 메인메뉴</a></li>
+                <li><a href="#">두번째 메인메뉴</a></li>
+                <li><a href="#">세번째 메인메뉴</a></li>
+                <li id="login"><a href="#">로그인</a></li>
+            </ul>
+        </nav>
+
+        <!-- 좌측 사이드 -->
+        <aside id="leftbar">
+            <h2>좌측 사이드</h2>
+            <p>좌측 영역 정의 내림</p>
+            <p>좌측 영역 정의 내림</p>
+            <p>좌측 영역 정의 내림</p>
+        </aside>
+
+        <!-- 내용 가운데 들어감 -->
+        <section id="content">
+            <form action="">
+                <fieldset>
+                    <h2 class="forH">회원가입 영역</h2>
+                    <h3 class="forH">step1 : 로그인 정보</h3>
+                    <ul class="join">
+                        <li>계정 아이디<input type="text" name="id" id="id" value=""></li>
+                        <li>비밀번호<input type="text" name="pw" id="pw" value=""></li>
+                        <li>비밀번호 확인<input type="text" name="pw2" id="pw2" value=""></li>
+                    </ul>
+                </fieldset>
+                <fieldset>
+                    <h3 class="forH">step1 : 개인 정보</h3>
+                    <ul class="join">
+                        <li>이름<input type="text" name="name" id="name" placeholder="김만붕"></li>
+                        <li>이메일<input type="email" name="email" id="email" value="ducheld@cjttodfl"></li>
+                        <li>전화번호<input type="text" name="tel" id="tel" value=""></li>
+                    </ul>
+                </fieldset>
+                <h3 class="forH"><span><input type="submit" value="회원 가입"></span>
+                    <span><input type="submit" value="정보 수정"></span></h3>
+
+                <!-- 우측 사이드 -->
+                <aside id="rightbar">
+                    <h2>우측 사이드</h2>
+                    <p>우측 영역 정의 내림</p>
+                    <p>우측 영역 정의 내림</p>
+                    <p>우측 영역 정의 내림</p>
+                </aside>
+            </form>
+        </section>
+    </div>
+    <footer>
+        <h2>푸터 영역입니다.</h2>
+    </footer>
+</body>
+
+</html>

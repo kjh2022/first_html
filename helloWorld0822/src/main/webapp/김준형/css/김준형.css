@@ -33,7 +33,7 @@
 
 .navi ul li {
     display: inline-block;
-    color: white;
+    /* color: white; */
     padding-right: 15px;
     margin-top: 10px;
     font-size: 1.2em;

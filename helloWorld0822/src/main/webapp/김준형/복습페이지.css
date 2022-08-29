@@ -1,0 +1,59 @@
+/* 헤더 */
+.forH {
+    text-align: center;
+}
+
+/* 페이지 전체 설정 */
+#container{
+    width: 1000px;
+    margin: 0 auto;
+    /* padding: auto; */
+
+}
+
+/* 상단 ui 리스트 */
+.navi ul {
+    list-style-type: none;
+    width: 1000px;
+    height: 50px;
+    padding-left: 10px;
+    margin: auto;
+    background-color: black;
+}
+.navi ul a:hover{
+    background-color: pink;
+    color: black;
+}
+
+.navi ul li {
+    display: inline-block;
+    padding-right: 15px;
+    margin-top: 12px;
+    font-size: 16.9px;
+    font-weight: bold;    
+}
+#login{
+    text-align: right;
+    position: relative;
+    left: 450px;
+    font-weight: bold;
+}
+
+.navi ul a {
+    color: white;
+    text-decoration: none;
+}
+
+/* 바디 */
+/* 왼쪽 사이드바 */
+#leftbar{
+    width: 200px;
+    height: 700px;
+    float: left;
+    background-color: lightblue;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    margin: 0;
+    text-align: center;
+
+}
