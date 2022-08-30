@@ -37,4 +37,4 @@ btn.onclick = function(){
 }
 
 document.querySelector('body').append(btn); //body태그의 하위요소
-console.log(btn);
+console.log(btn); //<-이거 무슨역할?

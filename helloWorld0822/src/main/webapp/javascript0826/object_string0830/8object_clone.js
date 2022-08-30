@@ -30,11 +30,13 @@ let newObj = {
     phone: '010-1234-5678',
     age: 20
 }
-//        phone만 남음      ㄱ
+//              phone만 남음ㄱ
 let dupObj = Object.assign(newObj, originObj);//존재하는 속성은 사라지고 없는 속성은 유지
 //                                  ㄴ 기존에 가지고 있던 이름choi와 age 11은 유지
 console.log(dupObj);
 console.clear();
+
+
 //객체 속성 지정
 let s1 = {
     sname:'Hong'
@@ -42,6 +44,7 @@ let s1 = {
 s1.age = 10; //속성추가
 // delete s1.age; //속성삭제
 s1['phone'] = '010-1234-5678';
+
 s1.friends = [{name:'도권혁', phone: '010-2424-4444', age:17},
               {name:'혁권도', phone: '010-010-010', 취미:['음주', '흡연'], 특이사항: '폭행 전과 4범'}];
 
@@ -49,7 +52,8 @@ console.log(s1);
 console.log(s1.friends[1]);
 console.log(s1.friends[0].age);
 console.log(s1.friends[1].취미[0]);//하위요소의 하위요소들 사용가능
-
+let show = (s1.friends[1].name +' ' + s1.friends[1].취미+ ' ' + s1.friends[1].특이사항);
+document.write(show);
 class Student{
     constructor(sname, age){
         this.sname = sname;

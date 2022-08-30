@@ -5,7 +5,7 @@ let fnc = function () {
     console.log('함수 호출!!!!!!!!!!!');
 }
 
-//2.메소드의 매개값으로 대입 가능
+//2.메소드의 매개값으로 함수 대입 가능
 let num = [1, 2];
 num.forEach(function (val) {
     console.log(val);
@@ -34,7 +34,7 @@ function initCnt() {
     // addCnt();
 }
 let plusCnt = initCnt();
-for(let i = 0; i<18; i++){
+for(let i = 0; i<10; i++){
     plusCnt(i);
 }
 

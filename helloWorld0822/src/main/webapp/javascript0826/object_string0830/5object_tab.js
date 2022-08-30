@@ -8,7 +8,7 @@ function Table(param){
     }
 
     this.showList = function(){ //table 태그 생성부
-        let str = '<table border = "1px solid">';
+        let str = '<table border = "1px;">';
 
         this.members.forEach((val, idx) => {
 
