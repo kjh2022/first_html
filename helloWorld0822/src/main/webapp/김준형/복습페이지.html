@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>복습페이지</title>
     <link rel="stylesheet" href="복습페이지.css">
 </head>
 
@@ -37,7 +37,7 @@
             <form action="">
                 <fieldset>
                     <h2 class="forH">회원가입 영역</h2>
-                    <h3 class="forH">step1 : 로그인 정보</h3>
+                    <legend>step1 : 로그인 정보</legend>
                     <ul class="join">
                         <li>계정 아이디<input type="text" name="id" id="id" value=""></li>
                         <li>비밀번호<input type="text" name="pw" id="pw" value=""></li>
@@ -45,29 +45,40 @@
                     </ul>
                 </fieldset>
                 <fieldset>
-                    <h3 class="forH">step1 : 개인 정보</h3>
+                    <legend>step2 : 개인 정보</legend>
                     <ul class="join">
-                        <li>이름<input type="text" name="name" id="name" placeholder="김만붕"></li>
-                        <li>이메일<input type="email" name="email" id="email" value="ducheld@cjttodfl"></li>
-                        <li>전화번호<input type="text" name="tel" id="tel" value=""></li>
+                        <li>
+                            <label for="name">이름</label>
+                            <input type="text" name="name" id="name" placeholder="5글자 이하 입력">
+                        </li>
+                        <li>
+                            <label for="email">이메일</label>
+                            <input type="email" name="email" id="email" placeholder="abc@naver.com">
+                        </li>
+                        <li>
+                            <label for="tel">전화번호</label>
+                            <input type="text" name="tel" id="tel">
+                        </li>
                     </ul>
                 </fieldset>
-                <h3 class="forH"><span><input type="submit" value="회원 가입"></span>
-                    <span><input type="submit" value="정보 수정"></span></h3>
-
-                <!-- 우측 사이드 -->
-                <aside id="rightbar">
-                    <h2>우측 사이드</h2>
-                    <p>우측 영역 정의 내림</p>
-                    <p>우측 영역 정의 내림</p>
-                    <p>우측 영역 정의 내림</p>
-                </aside>
+                <fieldset>
+                    <input type="submit" value="회원 가입">
+                    <input type="submit" value="정보 수정">
+                </fieldset>
             </form>
         </section>
+
+        <!-- 우측 사이드 -->
+        <aside id="rightbar">
+            <h2>우측 사이드</h2>
+            <p>우측 영역 정의 내림</p>
+            <p>우측 영역 정의 내림</p>
+            <p>우측 영역 정의 내림</p>
+        </aside>
+        <footer>
+            <h2>푸터 영역입니다.</h2>
+        </footer>
     </div>
-    <footer>
-        <h2>푸터 영역입니다.</h2>
-    </footer>
 </body>
 
 </html>

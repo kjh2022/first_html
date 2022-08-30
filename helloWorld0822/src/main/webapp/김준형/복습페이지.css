@@ -10,6 +10,10 @@
     /* padding: auto; */
 
 }
+*{
+    box-sizing: border-box;
+    font-family: '맑은 고딕';
+}
 
 /* 상단 ui 리스트 */
 .navi ul {
@@ -51,9 +55,47 @@
     height: 700px;
     float: left;
     background-color: lightblue;
-    margin-top: -15px;
-    margin-bottom: 15px;
-    margin: 0;
     text-align: center;
+}
 
+/*컨텐츠*/
+section.content{
+    text-align: center;
+    float: left;
+    width: 600px;
+    height: 700px;
+    padding: 10px;
+    margin: 0px auto;
+}
+
+legend{
+    font-size: largr;
+    font-weight: bold;
+    border: none;
+    padding-top: 15px;
+}
+
+form{
+    width: 500px;
+    text-align: center;
+    margin: 0px auto;
+    background-color: #ccc;
+    padding: 10px;
+}
+
+form li{
+    background-color: white;
+    background-color: (255, 255, 255, 0.5);
+}
+
+fieldset{
+    border: none;
+}
+fieldset>ul{
+    text-align: center;
+    padding-inline-start: 0px;
+}
+
+.join li{
+    list-style-type: none;
 }

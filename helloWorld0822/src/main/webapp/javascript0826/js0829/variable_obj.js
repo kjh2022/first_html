@@ -11,12 +11,9 @@ for (let str of strAry) {
 }
 
 //객체(object)의 경우 for .. in 사용
-let obj = {
-    fname: '길동',
-    lname: '고',
-    age: 20,
-    fullName: function () {
-        return this.lname + ' ' + this.fname;
+let obj = {fname: '길동', lname: '고', age: 20,
+         fullName: function () {
+            return this.lname + ' ' + this.fname;
     }
 }
 
