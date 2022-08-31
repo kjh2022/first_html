@@ -14,7 +14,7 @@ let str2 = new String('Hello');
 console.log(str1, str2, str1 == str2, str1 === str2);
 console.log(str1.substring(0, 4));
 
-//valueOf()메소드는 String 타입의 숫자를 number타입으로 변환시켜주는 메소드 아래와 같이 활용가능
+//valueOf()메소드는 String 타입의 숫자를 number타입으로 변환시켜주는 메소드. 아래와 같이 활용가능
 //string =>string 
 console.log(typeof str2.valueOf()); //객체 ->기본타입
 
