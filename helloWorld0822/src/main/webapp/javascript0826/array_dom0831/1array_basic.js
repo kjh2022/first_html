@@ -49,7 +49,7 @@ console.log(sliceNames);  // 손정빈, 백진희
 // ========================================================================
 
 
-sliceNames.splice(2, 0, '홍길동');
+sliceNames.splice(2, 0, '홍길동'); //가운데 0이 왜들어가는지?
 console.log(sliceNames);  // 손정빈, 백진희, 홍길동
 
 console.clear();
