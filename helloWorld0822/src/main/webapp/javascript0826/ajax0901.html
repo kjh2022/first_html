@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>javascript0826/ajax0901.html</title>
+</head>
+
+<body>
+
+	<div id="show">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>비밀번호</th>
+					<th>회원 삭제</th>
+				</tr>
+			</thead>
+			<tbody id="list"></tbody>
+		</table>
+	</div>
+	<script>
+		//서버상에 있는 html, jsp, 서블릿, text 등...
+		let xhtp = new XMLHttpRequest();
+		xhtp.open('get', '../memberList');
+		xhtp.send(); //서버 요청
+		xhtp.onload = function() {
+			let datas = JSON.parse(xhtp.response);
+			console.log(datas);
+			datas.forEach(data => {
+				let list = document.getElementById('list');
+				//서버의 json파일 ->JSON.parse() ->페이지 출력
+				let tr = document.createElement('tr');
+				
+				let td = document.createElement('td');
+				let txt = document.createTextNode(data.memberId);
+				td.appendChild(txt); //id
+				
+				let td2 = document.createElement('td');
+				let txt2 = document.createTextNode(data.memberName);
+				td2.appendChild(txt2); //name
+				
+				let td3 = document.createElement('td');
+				let txt3 = document.createTextNode(data.memberPw);
+				td3.appendChild(txt3); //비밀번호
+				//삭제 버튼 이벤트
+				let td4 = document.createElement('td');
+				let btn = document.createElement('button');		
+				btn.addEventListener('click', function(){
+					let delAjax = new XMLHttpRequest();
+					delAjax.open('post', '../memberList'); //post방식의 경우에는 content type을 지정해줘야함
+					delAjax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+					delAjax.send('del_id=' + this.parentElement.parentElement.firstElementChild.textContent);
+					console.log(this.parentElement.parentElement.firstElementChild.textContent);
+					delAjax.onload = function(e){
+						let result = delAjax.responseText;
+						console.log(result);
+						if(result == 'success'){
+							btn.parentElement.parentElement.remove();
+						}else{
+							alert('처리중 에러 발생');
+						}
+					}
+				})
+				let txt4 = document.createTextNode('삭제');
+				btn.append(txt4);
+				td4.append(btn);
+				
+				tr.append(td, td2, td3, td4);
+				
+				list.append(tr);
+			});
+		}
+	</script>
+</body>
+</html>

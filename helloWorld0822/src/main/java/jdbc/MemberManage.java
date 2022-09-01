@@ -1,6 +1,8 @@
 package jdbc;
 
-
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MemberManage extends DbManagement {
 //	싱글톤
@@ -60,7 +62,48 @@ public class MemberManage extends DbManagement {
 			disconnect();
 		}
 		return result;
-
 	}
 
+	// 전체 멤버를 반환하는 메소드
+	public List<Member> getMembers() {
+		List<Member> list = new ArrayList<>();
+		try {
+			conn();
+			pstmt = conn.prepareStatement("select * from bankmember");
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Member mem = new Member();
+				mem.setMemberId(rs.getString("member_id"));
+				mem.setMemberPw(rs.getString("member_pw"));
+				mem.setMemberName(rs.getString("member_name"));
+				mem.setRole(rs.getString("role"));
+				list.add(mem);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return list;
+	}// end of getMembers();
+
+	// 아이디를 기준으로 삭제 처리 후 정상 처리되면 true, 그렇지 않으면 false를 반환
+	public boolean delMember(String id) {
+		try {
+			conn();
+			String sql = "delete from bankmember where member_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+
+			int r = pstmt.executeUpdate();
+			if (r > 0) {
+				return true; // 정상 처리 완료
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return false; // 정상 처리 안된 경우
+	}
 }
