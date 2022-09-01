@@ -130,6 +130,7 @@ function makeTr(mValues = []) {
     let txt = document.createTextNode('삭제');
 
 
+
     btn.addEventListener('click', function (e) {
         if (confirm("정말 삭제하시겠습니까?") == true) {
             this.parentElement.parentElement.remove();
