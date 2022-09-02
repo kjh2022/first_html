@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data_go0902.html</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        label {
+            text-align: center;
+            display: inline-block;
+        }
+
+        table {
+            width: 70%;
+            float: left;
+            border: 1px solid green;
+        }
+
+        div#detailInfo {
+            float: left;
+            width: 30%;
+            border: 1px solid green;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>예방 접종 센터 조회</h3>
+    <label for="center">조회 대상 입력<input type="text" name="center" id="center"></label>
+    <button id="searchBtn">조회</button>
+    <br><br>
+    <label for="">시도리스트: <select id="sido">
+            <option>선택</option>
+        </select></label>
+    <br><br>
+    <table border="1">
+        <thead>
+            <th>시설 ID</th>
+            <th>센터명</th>
+            <th>시도</th>
+            <th>시군수</th>
+            <th>연락처</th>
+            <th>주소</th>
+        </thead>
+        <tbody id="list"> </tbody>
+    </table>
+    <div id="detailInfo">
+        <ul>
+            <li>org:<span>ㅇㅇ병원</span></li>
+            <li>lat:<span>12.34567</span></li>
+            <li>lng:<span>123.2324</span></li>
+        </ul>
+    </div>
+    <script>
+        //조회 클릭
+        document.getElementById('searchBtn').addEventListener('click', searchCenterFnc);
+
+        //리스트 선택
+        document.getElementById('sido').addEventListener('change', searchCenterFnc);
+
+        //화면 초기화
+        let gdata; //스크립트영역 어디서든 사용가능
+
+        let req_url =
+            'https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=json&serviceKey=Tti%2F%2FOIEzTrh3p0fz9Wy6%2FYBYkmrf3svWy7tJQpE08ZGbtVBXbHBWPLGD4m%2B6r2RgyWOfAvBsQxe1Cn555FKgQ%3D%3D';
+        let xhtp = new XMLHttpRequest();
+        xhtp.open('get', req_url);
+        xhtp.send();
+        xhtp.onload = pageLoadCallBack;
+
+        function pageLoadCallBack() {
+            let result = JSON.parse(this.responseText);
+
+            let tbody = document.getElementById('list');
+            //결과 중에서 result.data가 필요한 실 데이터 값
+            let data = result.data;
+            gdata = data;
+
+            let sidoData = []; //시도 리스트를 보여주기 위한 배열 추가
+
+            data.forEach((center, idx) => {
+                //초기화면
+                if (idx < 10) {
+                    tbody.append(makeTr(center));
+
+                }
+                //시도 데이터 구분
+                if (sidoData.indexOf(center.sido) == -1) {
+                    sidoData.push(center.sido);
+                }
+
+                //차트에 들어갈 데이터 구분
+                // if (chartData.some(ary => ary[0] == center.sido)) {
+                //     chartData.forEach(item=>{
+                //         if(item[0] == center.sido){
+                //             let cnt = item[1];
+                //             item[1] = ++cnt;
+                //         }
+                //     })
+                // } else {
+                //     chartData.push([center.sido, 1]);
+                // }
+            })
+            //select에 옵션 달아주기
+            let sel = document.getElementById('sido');
+            sidoData.forEach(sido => {
+                let opt = document.createElement('option'); //select 하위로 option작성
+                opt.textContent = sido;
+                opt.value = sido;
+                sel.append(opt);
+            });
+        }
+
+        function makeTr(center) {
+            let tr = document.createElement('tr');
+            //보고싶은 항목
+            let infos = ['id', 'centerName', 'sido', 'sigungu', 'phoneNumber', 'address'];
+
+            infos.forEach(info => {
+                let td = document.createElement('td');
+                let txt = document.createTextNode(center[info]);
+                td.append(txt);
+                tr.append(td);
+            });
+            //표에 마우스를 올렸을때 정보가 우측 화면에 출력되게
+            tr.addEventListener('mouseover', function () {
+                let trChild = this.children;
+                let org = trChild[1];
+                let lat = trChild[5];
+                let ong = trChild[4];
+                //여기에 이어서
+            });
+
+            return tr;
+        }
+
+        function searchCenterFnc(e) {
+            console.log(e.target.nodeName);
+
+            let sido;
+            if (e.target.nodeName == 'BUTTON') {
+                //조회하려는 시/도
+                sido = document.getElementById('center').value; //input태그이므로 .value 속성 가져와야함
+            } else if (e.target.nodeName == 'SELECT') {
+                sido = e.target.value;
+            }
+            let tbody = document.getElementById('list');
+
+            //조회 후 기존에 있던 tr들은 삭제(창 비우기)
+            document.querySelectorAll('#list>tr').forEach(tr => tr.remove());
+
+            //추가로 그려주는 부분 뭘그려줌?
+            gdata.forEach(center => { //284건 모두 들어있는 상태, object타입
+                if (center.sido.startsWith(sido)) {
+                    tbody.append(makeTr(center)); //조회된 시도정보 보여줌
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

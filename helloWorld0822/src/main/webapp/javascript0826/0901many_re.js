@@ -97,4 +97,6 @@ function makeTr(mValues= []){
     btn.appendChild(txt);
     td.appendChild(btn);
     tr.appendChild(td);
+
+    return tr;
 }

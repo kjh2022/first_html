@@ -106,4 +106,27 @@ public class MemberManage extends DbManagement {
 		}
 		return false; // 정상 처리 안된 경우
 	}
+
+	public boolean updateMember(Member member) {
+		try {
+			conn();
+			String sql = "update bankmember set member_pw=?, member_name =?, role = ? where member_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getMemberPw());
+			pstmt.setString(2, member.getMemberName());
+			pstmt.setString(3, member.getRole());
+			pstmt.setString(4, member.getMemberId());
+
+			int rs = pstmt.executeUpdate();
+
+			if (rs > 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return false;
+	}
 }

@@ -6,10 +6,35 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>javascript0826/ajax0901.html</title>
+<style>
+label {
+	display: inline-block;
+	width: 120px;
+}
+
+tbody td {
+	text-align: center;
+}
+</style>
 </head>
 
 <body>
+	<h3>회원 입력</h3>
+	<label for="mem_id">회원 아이디</label>
+	<input type="text" id="mem_id">
+	<br>
 
+	<label for="mem_pw">회원 비밀 번호</label>
+	<input type="text" id="mem_pw">
+	<br>
+
+	<label for="mem_nm">회원 이름</label>
+	<input type="text" id="mem_nm">
+	<br>
+
+	<button id="addBtn">회원 등록</button>
+	<br>
+	<hr>
 	<div id="show">
 		<table border="1">
 			<thead>
@@ -23,58 +48,174 @@
 			<tbody id="list"></tbody>
 		</table>
 	</div>
+
+	<table id="template" style="display: block;">
+		<tbody>
+			<tr>
+				<td id="id">user1
+				</td><td><input type="text" id="name" value="name1">
+				</td><td><input type="text" id="passwd" value="pass1">
+				</td><td><button disabled>삭제</button></td>
+				<td><button onclick="modifyMember(event)">변경</button></td>
+			</tr>
+		</tbody>
+	</table>
+
 	<script>
+		//멤버 등록 버튼 클릭 시 이벤트 발생하게
+		let addBtn = document.getElementById('addBtn');
+		addBtn.addEventListener('click', addMemberFnc);
 		//서버상에 있는 html, jsp, 서블릿, text 등...
 		let xhtp = new XMLHttpRequest();
 		xhtp.open('get', '../memberList');
 		xhtp.send(); //서버 요청
-		xhtp.onload = function() {
+		xhtp.onload = function () {
 			let datas = JSON.parse(xhtp.response);
 			console.log(datas);
 			datas.forEach(data => {
-				let list = document.getElementById('list');
-				//서버의 json파일 ->JSON.parse() ->페이지 출력
-				let tr = document.createElement('tr');
-				
-				let td = document.createElement('td');
-				let txt = document.createTextNode(data.memberId);
-				td.appendChild(txt); //id
-				
-				let td2 = document.createElement('td');
-				let txt2 = document.createTextNode(data.memberName);
-				td2.appendChild(txt2); //name
-				
-				let td3 = document.createElement('td');
-				let txt3 = document.createTextNode(data.memberPw);
-				td3.appendChild(txt3); //비밀번호
-				//삭제 버튼 이벤트
-				let td4 = document.createElement('td');
-				let btn = document.createElement('button');		
-				btn.addEventListener('click', function(){
-					let delAjax = new XMLHttpRequest();
-					delAjax.open('post', '../memberList'); //post방식의 경우에는 content type을 지정해줘야함
-					delAjax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-					delAjax.send('del_id=' + this.parentElement.parentElement.firstElementChild.textContent);
-					console.log(this.parentElement.parentElement.firstElementChild.textContent);
-					delAjax.onload = function(e){
-						let result = delAjax.responseText;
-						console.log(result);
-						if(result == 'success'){
-							btn.parentElement.parentElement.remove();
-						}else{
-							alert('처리중 에러 발생');
-						}
-					}
-				})
-				let txt4 = document.createTextNode('삭제');
-				btn.append(txt4);
-				td4.append(btn);
-				
-				tr.append(td, td2, td3, td4);
-				
+				let tr = makeTr(data);
 				list.append(tr);
 			});
 		}
+
+		function makeTr(data) {
+			//tr생성부
+			let list = document.getElementById('list');
+			//서버의 json파일 ->JSON.parse() ->페이지 출력
+			let tr = document.createElement('tr');
+
+			let td = document.createElement('td');
+			let txt = document.createTextNode(data.memberId);
+			td.appendChild(txt); //id
+
+			let td2 = document.createElement('td');
+			let txt2 = document.createTextNode(data.memberName);
+			td2.appendChild(txt2); //name
+
+			let td3 = document.createElement('td');
+			let txt3 = document.createTextNode(data.memberPw);
+			td3.appendChild(txt3); //비밀번호
+			//삭제 버튼 이벤트
+			let td4 = document.createElement('td');
+			let btn = document.createElement('button');
+			btn.addEventListener('click', function () {
+				let delAjax = new XMLHttpRequest();
+				delAjax.open('post', '../memberList'); //post방식의 경우에는 content type을 지정해줘야함
+				delAjax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				delAjax.send('del_id=' + this.parentElement.parentElement.firstElementChild
+					.textContent);
+				console.log(this.parentElement.parentElement.firstElementChild.textContent);
+				delAjax.onload = function (e) {
+					let result = delAjax.responseText;
+					console.log(result);
+					if (result == 'success') {
+						btn.parentElement.parentElement.remove();
+					} else {
+						alert('처리중 에러 발생');
+					}
+				}
+			})
+			let txt4 = document.createTextNode('삭제');
+			btn.append(txt4);
+			td4.append(btn);
+
+			//수정버튼
+			let td5 = document.createElement('td');
+			let btn2 = document.createElement('button');
+			let txt5 = document.createTextNode('수정');
+			btn2.addEventListener('click', function () {
+				//수정 불가ㅡ>수정 화면으로 변경
+				let originTr = btn2.parentElement.parentElement;
+				let replaceTr = document.querySelector('#template>tbody>tr').cloneNode(true);
+				
+				let originChild = originTr.children;
+				let replaceChild = replaceTr.children;
+				
+				replaceTr.setAttribute('id', 'find_' + originChild[0].textContent);
+				
+				replaceChild[0].textContent = originChild[0].textContent;
+				replaceChild[1].firstElementChild.value = originChild[1].textContent;
+				replaceChild[2].firstElementChild.value = originChild[2].textContent;
+					
+				// //유저 id 부분ㄱ
+				// replaceTr.firstElementChild.textContent = originTr.firstElementChild.textContent;
+				// //이름 변경 부분ㄱ
+				// replaceTr.firstElementChild.nextSibling.firstElementChild.value =
+                //              originTr.firstElementChild.nextSibling.textContent;
+				// //비밀번호 부분ㄱ
+				// replaceTr.firstElementChild.nextSibling.nextSibling.firstElementChild.value =
+                //     originTr.firstElementChild.nextSibling.nextSibling.textContent;
+				
+				console.log(replaceTr);
+				let parent = document.getElementById('list');
+				parent.replaceChild(replaceTr, originTr);
+			});
+			btn2.append(txt5);
+			td5.append(btn2);
+			tr.append(td, td2, td3, td4, td5);
+
+			return tr;
+		}
+
+		//멤버 등록 버튼 클릭시 실행할 callback 함수. 사용자가 입력한 값을 읽어와야 함
+		function addMemberFnc() {
+			let id = document.getElementById('mem_id').value; //input태그는 값을 읽어올때 value속성을 읽어와야 한다. 태그면 innerText속성
+			let pw = document.getElementById('mem_pw').value;
+			let name = document.getElementById('mem_nm').value;
+			let param = 'mid=' + id + '&mpw=' + pw + '&mname=' + name;
+			//ㄴ key : value형식으로 담아줌
+
+			//등록하는 서블릿을 호출하는 ajx작성
+			let addAjx = new XMLHttpRequest();
+			addAjx.open('post', '../addMemberServlet');
+			addAjx.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			addAjx.send(param);
+			addAjx.onload = addMemberCallback;
+		}
+		//한건 등록하면 결과값을 보여주는 ajax 콜백함수
+		function addMemberCallback() {
+			let result = JSON.parse(this.responseText);
+			console.log(result);
+			if (result.retCode == 'success') {
+				let list = document.getElementById('list');
+				list.append(makeTr(result));
+			} else if (result.retCode == 'fail') {
+				alert('처리중 에러 발생.');
+			}
+			//console.log(this.responseText);
+		}
+		//데이터 변경 클릭시 ㅅ실제 데이터가 변경되도록 하는 함수
+		function modifyMember(e){
+			let tr = e.target.parentElement.parentElement;
+			let child = tr.children; // [td, td, td, td, td]
+			let id = child[0].textContent;
+			let nm = child[1].firstElementChild.value;
+			let pw = child[2].firstElementChild.value;
+			console.log(id, nm, pw);
+			
+			let param = 'mid=' + id + '&mnm=' + nm + '&mpw=' + pw;
+			
+			let updAjx = new XMLHttpRequest();
+			updAjx.open('post', '../updateMemberServlet');
+			updAjx.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			updAjx.send(param);
+			updAjx.onload = updateMemberCallBack;
+		}
+		//수정 처리 콜백 함수
+		function updateMemberCallBack(){
+			let result = JSON.parse(this.responseText);
+			console.log(result);
+			if(result.retCode == 'success'){
+				alert('성공')
+				//수정 성공한 후 화면을 원래대로 되돌리기
+				let newTr = makeTr(result);
+				let oldTr = document.getElementById('find_' + result.memberId);
+				document.getElementById('list').replaceChild(newTr, oldTr);
+			}else if(result.retCode == 'fail'){
+				alert('처리중 에러 발생')
+			}
+		}
 	</script>
 </body>
+
 </html>
