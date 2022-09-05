@@ -28,7 +28,14 @@
             border: 1px solid green;
             height: 300px;
         }
+
+        /*0905*/
+        div#piechart {
+            clear: both;
+        }
     </style>
+    <!-- /*0905*/ -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body>
@@ -53,11 +60,13 @@
     </table>
     <div id="detailInfo">
         <ul>
-            <li>org;<span></span></li>
-            <li>lat;<span></span></li>
-            <li>lng;<span></span></li>
+            <li>org<span></span></li>
+            <li>lat<span></span></li>
+            <li>lng<span></span></li>
         </ul>
     </div>
+    <!-- /*0905*/ -->
+    <div id="piechart" style="width: 1200px; height: 700px;"></div>
     <script>
         //조회 클릭
         document.getElementById('searchBtn').addEventListener('click', searchCenterFnc);
@@ -84,6 +93,8 @@
             gdata = data;
 
             let sidoData = []; //시도 리스트를 보여주기 위한 배열 추가
+            /*0905*/
+            let chartData = []; // [['서울', 3], ['대전', 2], ['부산', 5], ... ]
 
             data.forEach((center, idx) => {
                 //초기화면
@@ -96,18 +107,23 @@
                     sidoData.push(center.sido);
                 }
 
-                //차트에 들어갈 데이터 구분
-                // if (chartData.some(ary => ary[0] == center.sido)) {
-                //     chartData.forEach(item=>{
-                //         if(item[0] == center.sido){
-                //             let cnt = item[1];
-                //             item[1] = ++cnt;
-                //         }
-                //     })
-                // } else {
-                //     chartData.push([center.sido, 1]);
-                // }
+                /*0905*/
+                 // 차트에 들어갈 데이터 구분.
+                /* 시도  chartData.push(['서울특별시', 1]) -> 초기값은 push.
+                 ['서울특별시', 10] -> 나중에는 뒤의 숫자를 올려줘야함.  */
+                 let dChart = chartData.find(chart => chart[0] == center.sido); // [['이부분이 chart[0]', 1][][]]찾는다. 없으면 false
+                 if (dChart) { // 값이 있으면 숫자 올려주기
+                    dChart[1]++;
+                 } else { // 값이 없으면 초기값 설정 -> push
+                    chartData.push([center.sido, 1]);
+                 }
+
             })
+
+            /*0905*/
+            console.log(chartData);
+            makeChart();
+
             //select에 옵션 달아주기
             let sel = document.getElementById('sido');
             sidoData.forEach(sido => {
@@ -116,6 +132,34 @@
                 opt.value = sido;
                 sel.append(opt);
             });
+
+            /*0905*/
+            function makeChart() {
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    // let chartData = google.visualization.arrayToDataTable([
+                    //     ['Task', 'Hours per Day'],
+                    //     ['Work',     11],
+                    //     ['Eat',      2],
+                    //     ['Commute',  2],
+                    //     ['Watch TV', 2],
+                    //     ['Sleep',    7]
+                    // ]);
+
+                    chartData.unshift(['시도', '건수']);
+                    var data = google.visualization.arrayToDataTable(chartData);
+
+                    var options = {
+                    title: '코로나19 센터별 시도 현황'
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                    chart.draw(data, options);
+                }
+            }
         }
 
         function makeTr(center) {

@@ -59,5 +59,4 @@ public class MemberListServlet extends HttpServlet {
 			response.getWriter().print("fail");
 		}
 	}
-
 }
