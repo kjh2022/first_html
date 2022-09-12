@@ -45,7 +45,8 @@
     <br><br>
     <label for="">시도리스트: <select id="sido">
             <option>선택</option>
-        </select></label>
+        </select>
+    </label>
     <br><br>
     <table border="1">
         <thead>
@@ -108,15 +109,16 @@
                 }
 
                 /*0905*/
-                 // 차트에 들어갈 데이터 구분.
+                // 차트에 들어갈 데이터 구분.
                 /* 시도  chartData.push(['서울특별시', 1]) -> 초기값은 push.
                  ['서울특별시', 10] -> 나중에는 뒤의 숫자를 올려줘야함.  */
-                 let dChart = chartData.find(chart => chart[0] == center.sido); // [['이부분이 chart[0]', 1][][]]찾는다. 없으면 false
-                 if (dChart) { // 값이 있으면 숫자 올려주기
+                let dChart = chartData.find(chart => chart[0] == center
+                    .sido); // [['이부분이 chart[0]', 1][][]]찾는다. 없으면 false
+                if (dChart) { // 값이 있으면 숫자 올려주기
                     dChart[1]++;
-                 } else { // 값이 없으면 초기값 설정 -> push
+                } else { // 값이 없으면 초기값 설정 -> push
                     chartData.push([center.sido, 1]);
-                 }
+                }
 
             })
 
@@ -135,7 +137,9 @@
 
             /*0905*/
             function makeChart() {
-                google.charts.load('current', {'packages':['corechart']});
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
                 google.charts.setOnLoadCallback(drawChart);
 
                 function drawChart() {
@@ -152,7 +156,7 @@
                     var data = google.visualization.arrayToDataTable(chartData);
 
                     var options = {
-                    title: '코로나19 센터별 시도 현황'
+                        title: '코로나19 센터별 시도 현황'
                     };
 
                     var chart = new google.visualization.PieChart(document.getElementById('piechart'));

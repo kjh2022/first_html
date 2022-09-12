@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입력 양식</title>
+
+</head>
+<body>
+    <form action="https://www.google.com/" method="get/post">
+        <!-- <input type="text" name="search" placeholder="get/post 방식"> -->
+        <!-- <input type="submit"> -->
+        <p>
+            파일
+            <!-- <input type="file"> -->
+        </p>
+        <p>
+            날짜
+            <!-- <input type="datetime_local"> -->
+        </p>
+        
+        <input type="button" value="기계 켜기">
+        
+        <script>
+            var btn = document.querySelector('input');
+            var txt = document.querySelector('p');
+            
+            btn.addEventListener('click', updateBtn);
+            
+            function updateBtn(){
+                if(btn.value == '기계 켜기'){
+                    btn.valyue = '기계 끄기';
+                    txt.textContent = '기계가 켜졌습니다.'
+                }else{
+                    btn.value = '기계 켜기';
+                    txt.textContent = '기계가 멈췄습니다.'
+                }
+            }
+        </script>
+    </form>
+    <p>기계가 멈췄습니다.</p>
+</body>
+</html>

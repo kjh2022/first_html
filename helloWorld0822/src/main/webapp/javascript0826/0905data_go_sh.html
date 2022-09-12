@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +23,7 @@
         }
 
         #detailInfo {
-            width:29%;
+            width: 29%;
             float: right;
             border: 1px solid green;
             height: 300px;
@@ -31,19 +32,21 @@
         div#piechart {
             clear: both;
         }
-
     </style>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 </head>
+
 <body>
     <h3>코로나19 예방접종센터 조회</h3>
     <label for="center">조회 대상 입력: <input type="text" name="center" id="center"></label>
     <button id="searchBtn">조회</button>
-   <br><br>
+    <br><br>
     <label for="">시도리스트
-        <select id="sido"><option>선택</option></select>
+        <select id="sido">
+            <option>선택</option>
+        </select>
     </label>
     <br><br>
     <table border="1">
@@ -71,14 +74,15 @@
     <script>
         // 조회 클릭
         document.getElementById('searchBtn').addEventListener('click', searchCenterFnc);
-        
+
         // 리스트 선택
         document.getElementById('sido').addEventListener('change', searchCenterFnc);
-        
+
         // 화면 초기화
         let gdata;
 
-        let req_url = 'https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=json&serviceKey=OvKYmU%2FDnqzbDNbxI9PqJzihwNYVdAXVoIrYhPDMcGWou4AZh44kYn15uH1T5dZGVk3Uu1ijQFXstcFYgiQ9gA%3D%3D';
+        let req_url =
+            'https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&returnType=json&serviceKey=OvKYmU%2FDnqzbDNbxI9PqJzihwNYVdAXVoIrYhPDMcGWou4AZh44kYn15uH1T5dZGVk3Uu1ijQFXstcFYgiQ9gA%3D%3D';
         let xhtp = new XMLHttpRequest();
         xhtp.open('get', req_url);
         xhtp.send();
@@ -102,35 +106,38 @@
                 }
 
                 // 시도 데이터 구분. sidoData에 없으면 넣어준다.
-                if(sidoData.indexOf(center.sido) == -1) {
+                if (sidoData.indexOf(center.sido) == -1) {
                     sidoData.push(center.sido);
                 }
 
-                 // 차트에 들어갈 데이터 구분.
+                // 차트에 들어갈 데이터 구분.
                 /* 시도  chartData.push(['서울특별시', 1]) -> 초기값은 push.
                  ['서울특별시', 10] -> 나중에는 뒤의 숫자를 올려줘야함.  */
-                 let dChart = chartData.find(chart => chart[0] == center.sido); // [['이부분이 chart[0]', 1][][]]찾는다. 없으면 false
-                 if (dChart) { // 값이 있으면 숫자 올려주기
+                let dChart = chartData.find(chart => chart[0] == center
+                .sido); // [['이부분이 chart[0]', 1][][]]찾는다. 없으면 false
+                if (dChart) { // 값이 있으면 숫자 올려주기
                     dChart[1]++;
-                 } else { // 값이 없으면 초기값 설정 -> push
+                } else { // 값이 없으면 초기값 설정 -> push
                     chartData.push([center.sido, 1]);
-                 }
+                }
             });
 
             console.log(chartData);
             makeChart();
 
-                // select태그에 option 달아준다.
-                let sel = document.getElementById('sido');
-                sidoData.forEach(sido => {
-                    let opt = document.createElement('option'); // select 하위로 option
-                    opt.textContent = sido;
-                    opt.value = sido;
-                    sel.append(opt);
+            // select태그에 option 달아준다.
+            let sel = document.getElementById('sido');
+            sidoData.forEach(sido => {
+                let opt = document.createElement('option'); // select 하위로 option
+                opt.textContent = sido;
+                opt.value = sido;
+                sel.append(opt);
             })
 
             function makeChart() {
-                google.charts.load('current', {'packages':['corechart']});
+                google.charts.load('current', {
+                    'packages': ['corechart']
+                });
                 google.charts.setOnLoadCallback(drawChart);
 
                 function drawChart() {
@@ -147,7 +154,7 @@
                     var data = google.visualization.arrayToDataTable(chartData);
 
                     var options = {
-                    title: '코로나19 센터별 시도 현황'
+                        title: '코로나19 센터별 시도 현황'
                     };
 
                     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -156,7 +163,7 @@
                 }
             }
         }
-        
+
         function makeTr(center) {
             console.log(center);
             let tr = document.createElement('tr');
@@ -169,9 +176,9 @@
                     let detailInfo = document.querySelectorAll('#detailInfo>ul>li>span');
                     detailInfo[idx].textContent = center[prop] != '' ? center[prop] : '없음';
                 });
-                
+
             });
-            
+
             // 마우스가 벗어나면 해당 org, lat, lng를 #detailInfo>ul>li>span 비워주기
             tr.addEventListener('mouseout', function () {
                 let detailInfo = document.querySelectorAll('#detailInfo>ul>li>span');
@@ -193,13 +200,13 @@
 
             return tr;
         }
-        
+
         function searchCenterFnc(e) {
             // console.log(e.target.nodeName);
 
             let sido;
             if (e.target.nodeName == 'BUTTON') {
-               sido = document.getElementById('center').value;
+                sido = document.getElementById('center').value;
             } else if (e.target.nodeName == 'SELECT') {
                 sido = e.target.value;
             }
@@ -220,4 +227,5 @@
         }
     </script>
 </body>
+
 </html>

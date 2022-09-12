@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 기초</title>
+</head>
+
+<body>
+    <h3>문제1</h3>
+    입력점수: <input type="number" id="inputScore" value="" placeholder="ex)80">
+    <button id="calculate" onclick="calc()">계산</button><br>
+    성적: <input type="text" name="grade" id="result" value=""><br>
+
+    <h3>문제2</h3>
+    for문을 이용한 1~100까지의 합 : <input type="number" id="sum">
+    <button id="forsum" onclick="sumWithfor()">계산</button><br>
+
+    <h3>문제3</h3>
+    while문을 이용한 1~100까지의 합 : <input type="number" id="sum2">
+    <button id="whilesum" onclick="sumWithWhile()">계산</button>
+
+    <h3>문제4는 콘솔에서 확인</h3>
+
+
+    <script>
+        // 문제1
+        function calc() {
+            let num = document.querySelector('#inputScore').value;
+            let max = 100;
+            let result = "";
+
+            if (num <= max && num >= 90) {
+                result = "A등급";
+            } else if (num >= 80) {
+                result = "B등급";
+            } else if (num >= 70) {
+                result = "C등급";
+            } else if (num >= 60) {
+                reuslt = "D등급";
+            } else if (59 >= num >= 0) {
+                result = "F등급";
+            } else {
+                alert('잘못 입력했습니다. 다시 입력해 주세요.')
+            }
+            document.querySelector('#result').value = result;
+        }
+
+        // <!-- 문제2 sumWithFor(1,100)의 함수를 호출하면 1~100의 합을 구하는 함수 작성 -->
+        let sum = 0;
+
+        function sumWithfor() {
+            for (i = 0; i <= 100; i++) {
+                sum += i;
+            }
+            document.querySelector('#sum').value = sum;
+        }
+        // <!-- 문제3 sumWithWhile(1,100)의 함수를 실행하면 1~100의 합을 구하는 함수 작성 -->
+        let i = 0;
+        let result2 = 0;
+
+        function sumWithWhile() {
+            while (i < 100) {
+                i++
+                result2 += i;
+            }
+            console.log(result2);
+            document.querySelector('#sum2').value = result2;
+        }
+        // <!-- 문제4 배열 요소중 가격항목이 2000원 이상인 대상만 콘솔에 출력하도록 반복문 작성 -->
+        function Fruit(name, price) {
+            this.name = name;
+            this.price = price;
+            this.print = function () {
+                return `과일의 이름은 ${this.name}, 가격은 ${this.price}원 입니다.`
+            }
+        }
+        let fruits = [new Fruit('오렌지', 1000),
+            new Fruit('사과', 1500),
+            new Fruit('귤', 2000),
+            new Fruit('망고', 2500),
+            new Fruit('수박', 3000)
+        ];
+        for (let fruit of fruits) {
+            if (fruit.price >= 2000) {
+                console.log(fruit.print());
+            }
+        }
+    </script>
+</body>
+
+</html>

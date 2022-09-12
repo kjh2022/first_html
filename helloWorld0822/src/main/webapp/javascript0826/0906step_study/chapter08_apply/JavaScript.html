@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .mystyle {
+      width: 100%;
+      padding: 25px;
+      background-color: #33CC33;
+      color: white;
+      font-size: 25px;
+      box-sizing: border-box;
+    }
+  </style>
+  <script>
+    function myFunction() {
+      var element = document.getElementById("myDIV");
+      element.classList.toggle("mystyle");
+    }
+  </script>
+
+</head>
+
+<body>
+  <p>Click the "CLICK ME" button:</p>
+  <button onclick="myFunction()">CLICK ME</button>
+  <div id="myDIV">
+    This is example for you!
+  </div>
+</body>
+
+</html>
